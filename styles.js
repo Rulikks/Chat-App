@@ -54,6 +54,7 @@ export const styles = StyleSheet.create({
         bottom: 15,
         top: 10,
       },
+      
       shape: {
         width: 375 ,
         height: 450,
@@ -71,13 +72,5 @@ export const styles = StyleSheet.create({
         top: 15,
         left: 130,
       },
-      UserShortcut: {
-        width: 350,
-        height: 70,
-        borderRadius: 50,
-        backgroundColor: '#5B5B6C',
-        bottom:-275
-      },
-      
         
 });

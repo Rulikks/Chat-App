@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
 import { styles } from './styles'
 import PersonContainer from './src/components/PersonContainer';
 import PersonCircle from './src/components/PersonCircle';
@@ -7,7 +7,10 @@ import PersonCircle from './src/components/PersonCircle';
 const App = () => {
   const notificationIcon = require('./assets/notificationIcon.png');
   const plus = require('./assets/plus.png');
-  const personCircles = ['Item 1', 'Item 2', 'Item 3'];
+  const personCircles = [{
+    imgURL: "",
+    username: "",
+  }, 'Item 2', 'Item 3'];
 
   return (
     <View style={styles.container}>
@@ -21,14 +24,17 @@ const App = () => {
           <Image source={plus} style={styles.plus} />
         </View>
         {personCircles.map((item, index) => (
-        <PersonCircle></PersonCircle>
+          <PersonCircle data={item} />
         ))}
       </PersonContainer>
+
       <View style={styles.shape}>
-      <View style={styles.slidebar}>
+
+        <View style={styles.slidebar}>
+        </View>
       </View>
-      </View>
-      <View style={styles.bluecircle} />
+
+
     </View>
 
   );
