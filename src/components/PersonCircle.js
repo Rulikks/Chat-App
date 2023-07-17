@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { styles } from '../../styles'
 
 const PersonCircle = ({
@@ -7,7 +7,7 @@ const PersonCircle = ({
 }) => {
     return (
     <View style={styles.personcircle}>
-        { data.username }
+            <Text>{data.username}</Text>
         <View style={styles.bluecircle} />
     </View>
     )

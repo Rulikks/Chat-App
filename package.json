@@ -6,20 +6,21 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "postinstall": "patch-package"
   },
   "dependencies": {
+    "@expo/webpack-config": "^18.0.1",
     "expo": "~48.0.18",
     "expo-status-bar": "~1.4.4",
+    "patch-package": "^7.0.2",
     "react": "18.2.0",
-    "react-native": "0.71.8",
-    "react-native-snap-carousel": "^3.9.1",
-    "react-native-web": "~0.18.10",
     "react-dom": "18.2.0",
-    "@expo/webpack-config": "^18.0.1"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "react-native": "0.71.8",
+    "react-native-gesture-handler": "^2.12.0",
+    "react-native-snap-carousel": "^3.9.1",
+    "react-native-swiper": "^1.6.0",
+    "react-native-web": "~0.18.10"
   },
   "private": true
 }
