@@ -7,15 +7,16 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#5B5B6C',
   },
-    circle: {
-      position: 'absolute',
-      right: 20,
-      top: 45,
-      width: 40,
-      height: 40,
-      borderRadius: 20,
-      backgroundColor: 'white',
-    },
+  circle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'white',
+    position: 'absolute',
+    right: 10,
+    top: 10,
+  },
+  
     bluecircle: {
         width: 15,
         height: 15,
@@ -55,14 +56,16 @@ export const styles = StyleSheet.create({
     UserControlBar: {
       position: 'absolute',
       bottom: 0,
-      width: 323,
-      height: 389,
-      backgroundColor: 'black',
+      width: 340,
+      height: 80,
+      backgroundColor: '#5B5B6C',
       borderRadius: 50,
       alignSelf: 'center',
-    },
+      zIndex: 1,
+      bottom:25,
+    },    
     shape: {
-      width: 375 ,
+      width: 375,
       height: 550,
       backgroundColor: '#F5F5F5',
       borderTopEndRadius:60,
@@ -76,7 +79,36 @@ export const styles = StyleSheet.create({
       borderRadius: 50,
       top: 15,
       left: 130,
+    }, 
+    PhoneIcon: {
+      width: 24,
+      height: 24,
+      left:50,
+      top:19,
     },
-   
+    ProfileIcon: {
+      width: 24,
+      height: 24,
+      left:250,
+      bottom:20,
+     
+    },
+    sohbetIcon: {
+      width: 24,
+      height: 24,
+      left:150,
+      bottom:65,
+    },
+    textCall:{
+      top:26,
+      left:50,
+      color:'white',
+    },
+    textSohbet:{
+      top: 26, 
+      left: 70,
+      
+    }
+
     
 });
