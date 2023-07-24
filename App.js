@@ -1,42 +1,44 @@
-import React from 'react';
-import { View, Text, StyleSheet, Dimensions, Image,ScrollView} from 'react-native';
-import { styles } from './styles'
+import React, { useRef } from 'react';
+import { View, Text, StyleSheet, Dimensions, Image, ScrollView, Animated, PanResponder } from 'react-native';
+import { styles } from './styles';
 import PersonContainer from './src/components/PersonContainer';
 import PersonCircle from './src/components/PersonCircle';
-
 
 const App = () => {
   const notificationIcon = require('./assets/notificationIcon.png');
   const plus = require('./assets/plus.png');
   const phoneIcon = require('./assets/phone-icon.png');
-const profileIcon = require('./assets/profile-icon.png');
-const sohbetIcon = require('./assets/sohbet.png');
+  const profileIcon = require('./assets/profile-icon.png');
+  const sohbetIcon = require('./assets/sohbet.png');
+  
+  const pan = useRef(new Animated.ValueXY()).current;
+  const panResponder = PanResponder.create({
+    onMoveShouldSetPanResponder: () => true,
+    onPanResponderMove: Animated.event([
+      null,
+      { dy: pan.y } // 'dy' değerini 'pan.y' ye atadık.
+    ], {useNativeDriver: false}),
+    onPanResponderRelease: () => {
+      Animated.spring(pan, { toValue: { x: 0, y: 0 }, useNativeDriver: false }).start();
+    }
+  });
 
-  const personCircles = [{
-    imgURL: "",
-    username: "User 1",
-  }, 
-  {
-    imgURL: "",
-    username: "User 2",
-  },
-  {
-    imgURL: "",
-    username: "User 3",
-  },
-  {
-    imgURL: "",
-    username: "User 4",
-  },
-  {
-    imgURL: "",
-    username: "User 2",
-  },
-  {
-    imgURL: "",
-    username: "User 2",
-  },
-];
+  const personCircles = [
+    { imgURL: "", username: "User" },
+    { imgURL: "", username: "User" },
+    { imgURL: "", username: "User" },
+    { imgURL: "", username: "User" },
+    { imgURL: "", username: "User" },
+    { imgURL: "", username: "User" },
+    { imgURL: "", username: "User" },
+    { imgURL: "", username: "User" },
+    { imgURL: "", username: "User" },
+    { imgURL: "", username: "User" },
+    { imgURL: "", username: "User" },
+    { imgURL: "", username: "User" },
+    { imgURL: "", username: "User" },
+    { imgURL: "", username: "User" },
+  ];
 
   return (
     <View style={styles.container}>
@@ -49,28 +51,42 @@ const sohbetIcon = require('./assets/sohbet.png');
           <View style={styles.personcircle}>
             <View style={styles.bluecircle} />
             <View style={{ flex: 1 }}>
-            <Image source={plus} style={styles.plus} />
+              <Image source={plus} style={styles.plus} />
+            </View>
           </View>
-          </View>
-          {personCircles.map((item, index) => (
-            <PersonCircle key={index} data={item} />
-          ))}
+          {personCircles.map((item, index) => {
+            item.username = `User ${index + 1}`
+            return (
+              <PersonCircle key={index} data={item} />
+            )
+          })}
         </ScrollView>
       </PersonContainer>
       <View style={styles.UserControlBar}>
-      <Image source={phoneIcon} style={styles.PhoneIcon}></Image>
-      <Text style={styles.textCall}>Call</Text>
-      <Image source={profileIcon} style={styles.ProfileIcon}></Image>
-      <Text style={styles.textProfile}>Profile</Text>
-       <Image source={sohbetIcon} style={styles.sohbetIcon}></Image>
-       <Text style={styles.textSohbet}>Group</Text>
-      </View>
-      <View style={styles.shape}>
-        <View style={styles.slidebar}>
+        <View style={styles.iconTextPair}>
+          <Image source={phoneIcon} style={styles.Icon} />
+          <Text style={styles.Text}>Call</Text>
+        </View>
+        <View style={styles.iconTextPair}>
+          <Image source={profileIcon} style={styles.Icon} />
+          <Text style={styles.Text}>Profile</Text>
+        </View>
+        <View style={styles.iconTextPair}>
+          <Image source={sohbetIcon} style={styles.Icon} />
+          <Text style={styles.Text}>Chat</Text>
         </View>
       </View>
+      <Animated.View 
+        {...panResponder.panHandlers} 
+        style={[
+          pan.getLayout(), 
+          styles.shape
+        ]}
+      >
+        <View style={styles.slidebar} />
+      </Animated.View>
     </View>
   );
-}
+};
 
 export default App;
