@@ -7,6 +7,7 @@ import {
   Animated,
   PanResponder,
   Button,
+  TouchableOpacity,
 } from "react-native";
 import { styles } from "../../styles";
 import PersonContainer from "../components/PersonContainer";
@@ -18,6 +19,9 @@ const Home = ({ navigation }) => {
   const phoneIcon = require("../../assets/phone-icon.png");
   const profileIcon = require("../../assets/profile-icon.png");
   const sohbetIcon = require("../../assets/sohbet.png");
+  const rick = require("../../assets/rick.png");
+
+
 
   const pan = useRef(new Animated.ValueXY()).current;
   const panResponder = PanResponder.create({
@@ -56,9 +60,11 @@ const Home = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.circle} onPress={() => navigation.navigate("Notice")}>
+      <View style={styles.container}>
+      <TouchableOpacity style={styles.circle} onPress={() => navigation.navigate("Notice")}>
         <Image source={notificationIcon} style={styles.notificationIcon} />
         <View style={styles.bluecircle} />
+      </TouchableOpacity>
       </View>
      
       <PersonContainer>
@@ -75,10 +81,7 @@ const Home = ({ navigation }) => {
           })}
         </ScrollView>
       </PersonContainer>
-      <Button
-        title="Test"
-        onPress={() => navigation.navigate("Notice")}
-      />
+      
       <View style={styles.UserControlBar}>
         <View style={styles.iconTextPair}>
           <Image source={phoneIcon} style={styles.Icon} />
@@ -93,6 +96,7 @@ const Home = ({ navigation }) => {
           <Text style={styles.Text}>Chat</Text>
         </View>
       </View>
+
       <Animated.View
         {...panResponder.panHandlers}
         style={[pan.getLayout(), styles.shape]}

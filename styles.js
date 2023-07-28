@@ -14,8 +14,9 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     position: 'absolute',
     top: 50,
-    right: 20
+    left: 115,
   },
+
   bluecircle: {
     width: 15,
     height: 15,
@@ -68,6 +69,9 @@ export const styles = StyleSheet.create({
     paddingVertical: 10
   },
   shape: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     width: '100%',
     height: 550,
     backgroundColor: '#F5F5F5',
@@ -80,9 +84,9 @@ export const styles = StyleSheet.create({
     height: 10,
     backgroundColor: '#5B5B6C',
     borderRadius: 50,
-    top: 15,
-    left: 130,
+    bottom:'47%',
   },
+  
   Icon: {
     width: 25,
     height: 25,
@@ -96,5 +100,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     color: "white"
-  }
+  },
+ 
 });

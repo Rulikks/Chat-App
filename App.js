@@ -14,7 +14,7 @@ const options = {
 const App = () => {
   return (
     <>
-    <Text>xdddddd</Text>
+    
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Chat" component={HomeScreen} options={options} />
