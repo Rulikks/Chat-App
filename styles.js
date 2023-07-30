@@ -34,7 +34,7 @@ export const styles = StyleSheet.create({
   personContainer: {
     flexDirection: 'row',
     top: 50,
-    height: 100,  // Height should be set depending on the height of the child components
+    height: 100, 
     width: '100%',
   },
   personcircle: {
@@ -44,7 +44,6 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginLeft: 10,
     borderWidth: 2,
-    margin: 5,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -100,6 +99,24 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     color: "white"
+  },
+  kutucuk: {
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    padding: 10,
+    position: 'absolute', 
+    top: 0,
+    left: 0, 
+  },
+  rick: {
+    width: 50, 
+    height: 50,
+    resizeMode: 'cover',
+    marginRight: 10,
+  },
+  logoText: {
+    fontSize: 24,
+    fontWeight: 'bold',
   },
  
 });

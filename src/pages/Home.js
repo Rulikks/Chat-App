@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   View,
   Text,
@@ -21,25 +21,39 @@ const Home = ({ navigation }) => {
   const sohbetIcon = require("../../assets/sohbet.png");
   const rick = require("../../assets/rick.png");
 
-
-
   const pan = useRef(new Animated.ValueXY()).current;
+  const [isLocked, setIsLocked] = useState(false);
+
   const panResponder = PanResponder.create({
-    onMoveShouldSetPanResponder: () => true,
-    onPanResponderMove: Animated.event(
-      [
-        null,
-        { dy: pan.y }, // 'dy' değerini 'pan.y' ye atadık.
-      ],
-      { useNativeDriver: false }
-    ),
+    onStartShouldSetPanResponder: () => true,
+    onPanResponderMove: (e, gestureState) => {
+      if (gestureState.dy > 0 && !isLocked) {
+        Animated.event([null, { dy: pan.y }], { useNativeDriver: false })(e, gestureState);
+      }
+    },
     onPanResponderRelease: () => {
-      Animated.spring(pan, {
-        toValue: { x: 0, y: 0 },
-        useNativeDriver: false,
-      }).start();
+      if (pan.y._value > 50) { // Assuming 50 is the threshold to lock the shape
+        setIsLocked(true);
+      } else {
+        Animated.spring(pan, {
+          toValue: { x: 0, y: 0 },
+          friction: 5,
+          useNativeDriver: false,
+        }).start();
+      }
     },
   });
+
+  const handleIconPress = () => {
+    if (isLocked) {
+      setIsLocked(false);
+      Animated.spring(pan, {
+        toValue: { x: 0, y: 0 },
+        friction: 5,
+        useNativeDriver: false,
+      }).start();
+    }
+  }
 
   const personCircles = [
     { imgURL: "", username: "User" },
@@ -61,12 +75,20 @@ const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.container}>
-      <TouchableOpacity style={styles.circle} onPress={() => navigation.navigate("Notice")}>
-        <Image source={notificationIcon} style={styles.notificationIcon} />
-        <View style={styles.bluecircle} />
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.circle} onPress={() => navigation.navigate("Notice")}>
+          <Image source={notificationIcon} style={styles.notificationIcon} />
+          <View style={styles.bluecircle} />
+        </TouchableOpacity>
       </View>
-     
+      
+      <View style={styles.kutucuk}>
+        <Text style={styles.logoText}>Marka İsmi</Text>
+        <Image 
+          source={require('../../assets/rick.png')} 
+          style={styles.rick} 
+        />
+      </View>
+      
       <PersonContainer>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.personcircle}>
@@ -92,14 +114,20 @@ const Home = ({ navigation }) => {
           <Text style={styles.Text}>Profile</Text>
         </View>
         <View style={styles.iconTextPair}>
-          <Image source={sohbetIcon} style={styles.Icon} />
+          <TouchableOpacity onPress={handleIconPress}>
+            <Image source={sohbetIcon} style={styles.Icon} />
+          </TouchableOpacity>
           <Text style={styles.Text}>Chat</Text>
         </View>
       </View>
-
+      
       <Animated.View
         {...panResponder.panHandlers}
-        style={[pan.getLayout(), styles.shape]}
+        style={[
+          pan.getLayout(), 
+          styles.shape, 
+          { transform: [{ translateY: pan.y }] }
+        ]}
       >
         <View style={styles.slidebar} />
       </Animated.View>
