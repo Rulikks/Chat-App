@@ -73,22 +73,19 @@ const Home = ({ navigation }) => {
   ];
 
   return (
-    <View style={styles.container}>
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.circle} onPress={() => navigation.navigate("Notice")}>
-          <Image source={notificationIcon} style={styles.notificationIcon} />
-          <View style={styles.bluecircle} />
-        </TouchableOpacity>
-      </View>
-      
+    <View style={styles.maincontainer}>
       <View style={styles.kutucuk}>
-        <Text style={styles.logoText}>Marka İsmi</Text>
         <Image 
           source={require('../../assets/rick.png')} 
           style={styles.rick} 
         />
+        <Text style={styles.logoText}>Marka İsmi</Text>
       </View>
-      
+      <TouchableOpacity style={styles.circle} onPress={() => navigation.navigate("Notice")}>
+        <Image source={notificationIcon} style={styles.notificationIcon} />
+        <View style={styles.bluecircle} />
+      </TouchableOpacity>
+    
       <PersonContainer>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.personcircle}>
@@ -133,6 +130,7 @@ const Home = ({ navigation }) => {
       </Animated.View>
     </View>
   );
+  
 };
 
 export default Home;

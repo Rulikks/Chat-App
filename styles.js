@@ -1,22 +1,13 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+const windowWidth = Dimensions.get('window').width;
 
 export const styles = StyleSheet.create({
-  container: {
+ maincontainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#5B5B6C',
   },
-  circle: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'white',
-    position: 'absolute',
-    top: 50,
-    left: 115,
-  },
-
   bluecircle: {
     width: 15,
     height: 15,
@@ -100,6 +91,12 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     color: "white"
   },
+  container: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: '#5B5B6C',
+  },
   kutucuk: {
     flexDirection: 'row', 
     alignItems: 'center', 
@@ -107,16 +104,33 @@ export const styles = StyleSheet.create({
     position: 'absolute', 
     top: 0,
     left: 0, 
+    width: windowWidth, // Full width of the screen
+    justifyContent: 'flex-start', // start items from the start of the screen
+    zIndex: 1, // put the container on top of other elements
   },
   rick: {
     width: 50, 
     height: 50,
-    resizeMode: 'cover',
-    marginRight: 10,
+    resizeMode: 'contain', // changed from 'cover' to 'contain'
+    marginLeft: 10, // added some left margin to ensure it stays at the left end
+    zIndex: 1, // put the rick image on top of other elements
   },
   logoText: {
     fontSize: 24,
     fontWeight: 'bold',
+    marginLeft: 60, // Space between the logo and the text
+    zIndex: 1, // put the logo text on top of other elements
   },
+  circle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'white',
+    position: 'absolute',
+    top: 10, // Adjust this to set how far from the top the circle should be
+    right: 10, // Adjust this to set how far from the right the circle should be
+    zIndex: 1, // put the circle on top of other elements
+  },
+
  
 });
