@@ -24,7 +24,9 @@ const Home = ({ navigation }) => {
   const pan = useRef(new Animated.ValueXY()).current;
   const [isLocked, setIsLocked] = useState(false);
 
-  const panResponder = PanResponder.create({
+  const SHAPE_HEIGHT = 550; // Bu, styles.shape içinde tanımlanan yükseklik değeri.
+
+const panResponder = PanResponder.create({
     onStartShouldSetPanResponder: () => true,
     onPanResponderMove: (e, gestureState) => {
       if (gestureState.dy > 0 && !isLocked) {
@@ -32,8 +34,14 @@ const Home = ({ navigation }) => {
       }
     },
     onPanResponderRelease: () => {
-      if (pan.y._value > 50) { // Assuming 50 is the threshold to lock the shape
+      if (pan.y._value > 50) { // 50 threshold değeri olarak alındı
         setIsLocked(true);
+        Animated.spring(pan, {
+          // Shape'in ekranın dışına çıkması için yüksekliği kadar kaydırmamız gerekiyor
+          toValue: { x: 0, y: SHAPE_HEIGHT },
+          friction: 5,
+          useNativeDriver: false,
+        }).start();
       } else {
         Animated.spring(pan, {
           toValue: { x: 0, y: 0 },
@@ -43,6 +51,7 @@ const Home = ({ navigation }) => {
       }
     },
   });
+
 
   const handleIconPress = () => {
     if (isLocked) {
