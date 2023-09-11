@@ -74,7 +74,7 @@ export const styles = StyleSheet.create({
     height: 10,
     backgroundColor: '#5B5B6C',
     borderRadius: 50,
-    bottom:'47%',
+    top:'2%',
   },
   
   Icon: {
@@ -131,6 +131,35 @@ export const styles = StyleSheet.create({
     right: 10, // Adjust this to set how far from the right the circle should be
     zIndex: 1, // put the circle on top of other elements
   },
+  userImageWithBorder: {
+    width: 60, 
+    height: 60,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: '#fff',
+    marginRight: 15,
+},
+
+userName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'black',
+    marginBottom: 2,
+},
+
+lastMessage: {
+    fontSize: 14,
+    color: 'black',
+    marginRight: 10,
+},
+
+profileDetailContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    flex: 1,
+},
+
 
  
 });

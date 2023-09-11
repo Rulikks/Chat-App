@@ -19,6 +19,7 @@ const Home = ({ navigation }) => {
   const phoneIcon = require("../../assets/phone-icon.png");
   const profileIcon = require("../../assets/profile-icon.png");
   const sohbetIcon = require("../../assets/sohbet.png");
+  const lamaIcon = require("../../assets/lamaIcon.png");
   const rick = require("../../assets/rick.png");
 
   const pan = useRef(new Animated.ValueXY()).current;
@@ -128,15 +129,24 @@ const panResponder = PanResponder.create({
       </View>
       
       <Animated.View
-        {...panResponder.panHandlers}
-        style={[
-          pan.getLayout(), 
-          styles.shape, 
-          { transform: [{ translateY: pan.y }] }
-        ]}
-      >
-        <View style={styles.slidebar} />
-      </Animated.View>
+    {...panResponder.panHandlers}
+    style={[
+        pan.getLayout(), 
+        styles.shape, 
+        { transform: [{ translateY: pan.y }] }
+    ]}
+>
+    <View style={styles.slidebar} />
+
+    <View style={styles.profileDetailContainer}>
+        <Image source={lamaIcon} style={styles.userImageWithBorder} />
+        <View>
+            <Text style={styles.userName}>Kullanıcı Adı</Text>
+            <Text style={styles.lastMessage}>Son mesaj içeriği...</Text>
+        </View>
+    </View>
+</Animated.View>
+
     </View>
   );
   
